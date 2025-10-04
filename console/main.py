@@ -1,8 +1,8 @@
 # Common
 import os
-from utils.io import get_select, get_text, get_integer
 
 # Framework
+from framework.utils.io import get_select, get_text, get_integer
 from framework.FxHybridTaxonomyFrameworkSetup import CFxHybridTaxonomyFrameworkSetup
 from framework.FxHybridTaxonomyFramework import CFxHybridTaxonomyFramework
 
