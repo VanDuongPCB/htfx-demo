@@ -27,12 +27,9 @@ def main():
     cwd = os.getcwd()
 
     setup_fx = CFxHybridTaxonomyFrameworkSetup()
-    setup_fx.workspace = os.path.join(cwd,"workspaces","ws1")
+    setup_fx.workspace = os.path.join(cwd,"workspaces","sbert")
     setup_fx.db_source_path = "/mnt/d/Workspaces/HybridTaxonomyFramework/data/amazon/extracts/Amazon Products.db"
     setup_fx.db_working_path = os.path.join(setup_fx.workspace,"Amazon Products.db")
-    # setup_fx.db_table = "products"
-    # setup_fx.db_item_id_column = "item_id"
-    # setup_fx.db_label_column = "main_category"
     setup_fx.embed_data_names = ["title","features", "description"]
     setup_fx.embed_text_formats = ["[TITLE: %s]", "[FEATURES: %s]","[DESCRIPTION: %s]"]
     fx = CFxHybridTaxonomyFramework()
@@ -47,7 +44,8 @@ def main():
     setup_embedder.framework = "sentence-transformers"
     setup_embedder.pretrained = "all-MiniLM-L6-v2"
     # setup_embedder.pretrained = "BAAI/bge-m3"
-    setup_embedder.batch_size = 4
+    # setup_embedder.batch_size = 4
+    setup_embedder.device = "cpu"
     setup_embedder.db_working_path = setup_fx.db_working_path
     fx.setup_embedder(setup_embedder)
 
@@ -86,6 +84,7 @@ def main():
             pass
 
         elif option == "train":
+            fx.train()
             pass
 
         elif option == "test":
